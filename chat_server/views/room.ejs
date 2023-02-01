@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title><%= roomName %></title>
+  <link rel="icon" type="image/x-icon" href="/public/logo.png" alt="page logo">
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    const roomName = "<%= roomName %>"
+  </script>
+  <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div id="message-container"></div>
+    <form id="send-container">
+      <input type="text" id="message-input">
+      <button type="submit" id="send-button">Send</button>
+    </form>
+  <section class="footer">
+    <!-- Site footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <h6>Quick Links</h6>
+                <ul class="footer-links">
+                    <li><a href="./">Home</a></li>
+                </ul>
+            </div>
+            <hr>
+        </div>
+    </footer>
+  </section>
+</body>
+</html>
