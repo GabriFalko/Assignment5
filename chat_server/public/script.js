@@ -22,7 +22,7 @@ if (messageForm != null) {
     messageInput.value = ''
   })
 }
-
+// make it look prettier***
 socket.on('room-created', room => {
   const roomElement = document.createElement('div')
   roomElement.innerText = room
@@ -33,6 +33,7 @@ socket.on('room-created', room => {
   roomContainer.append(roomLink)
 })
 
+// make it look prettier***
 socket.on('chat-message', data => {
   appendMessage(`${data.name}: ${data.message}`)
 })
@@ -45,11 +46,13 @@ socket.on('user-disconnected', name => {
   appendMessage(`${name} disconnected`)
 })
 
+// make it look prettier***
 function appendMessage(message) {
   const messageElement = document.createElement('div')
   messageElement.innerText = message
   messageContainer.append(messageElement)
 }
+
 /* to implement future UI color change for user.
 let selectElement = document.getElementById('colorDropdown'),
 options = ["BlueViolet", "Crimson", "DarkSalmon", "OliveDrab", "SaddleBrown"];

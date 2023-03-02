@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><%= roomName %></title>
-  <link rel="icon" type="image/x-icon" href="/public/logo.png" alt="page logo">
+  <link rel="icon" type="image/png" href="logo.png" alt="page logo">
   <link rel="stylesheet" href="/style.css">
   <script>
     const roomName = "<%= roomName %>"
@@ -14,11 +14,13 @@
   <script defer src="script.js"></script>
 </head>
 <body>
+<div class="scroll">
   <div id="message-container"></div>
-    <form id="send-container">
-      <input type="text" id="message-input">
-      <button type="submit" id="send-button">Send</button>
-    </form>
+  <form id="send-container">
+    <input type="text" id="message-input" autocomplete="off">
+    <button type="submit" id="send-button">Send</button>
+  </form>
+</div>
   <section class="footer">
     <!-- Site footer -->
     <footer class="site-footer">
@@ -27,6 +29,7 @@
                 <h6>Quick Links</h6>
                 <ul class="footer-links">
                     <li><a href="./">Home</a></li>
+                    <li><a href="./about">About</a></li>
                 </ul>
             </div>
             <hr>

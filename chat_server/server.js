@@ -6,6 +6,7 @@ const express = require('express')
 const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
+var port = process.env.PORT || 3000;
 
 app.set('views', './views')
 app.set('view engine', 'ejs')
@@ -13,10 +14,14 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 
 const rooms = { }
+const users = { }
 
 app.get('/', (req, res) => {
   res.render('index', { rooms: rooms })
 })
+app.get('/about', function(req, res){
+  res.render('./about');
+});
 
 app.post('/room', (req, res) => {
   if (rooms[req.body.room] != null) {
@@ -35,13 +40,20 @@ app.get('/:room', (req, res) => {
   res.render('room', { roomName: req.params.room })
 })
 
-server.listen(3000)
+app.get("*", function (req, res) {
+  res.status(404).render('./partials/404')
+});
+
+server.listen(port, function () {
+  console.log("== Server is listening on port", port);
+});
 
 io.on('connection', socket => {
   socket.on('new-user', (room, name) => {
     socket.join(room)
     rooms[room].users[socket.id] = name
     socket.to(room).broadcast.emit('user-connected', name)
+    console.log(" Current rooms:",rooms)
   })
   socket.on('send-chat-message', (room, message) => {
     socket.to(room).broadcast.emit('chat-message', { message: message, name: rooms[room].users[socket.id] })

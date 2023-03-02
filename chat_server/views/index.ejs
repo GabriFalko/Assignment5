@@ -4,22 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Chat App Homepage</title>
-  <link rel="icon" type="image/x-icon" href="/public/logo.png" alt="page logo">
+  <title>About Chat App</title>
+  <link rel="icon" type="image/x-icon" href="/logo.png" alt="page logo">
   <link rel="stylesheet" href="/style.css">
   <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
   <script defer src="script.js"></script>
 </head>
+
 <body>
-  <div id="room-container">
-    <% Object.keys(rooms).forEach(room => { %>
-      <div><%= room %></div>
-      <a href="/<%= room %>">Join</a>
-    <% }) %>
-  </div>
-  <form action="/room" method="POST">
-    <input name="room" type="text" required>
-    <button type="submit">New Room</button>
-  </form>
+  <section class="section1">
+    <!--heading-->
+    <header>
+       <a href="/", id="img_home_link"><img src="/logo-no-background.png", alt="quaestus home"></a>
+    </header>
+  </section>
+
+  <section class="buffer1">
+    <!--Title-->
+    <div class="about">
+        <h1>About this website</h1>
+        <p class="about-text">
+            About the app usage
+        </p>
+    </div>
+  </section>
+
+  <section class="main">
+    <!--Joining rooms from home page (might remove feature)--> 
+    <div id="room-container">
+      <% Object.keys(rooms).forEach(room => { %>
+        <div><%= room %></div>
+        <a href="/<%= room %>">Join</a>
+      <% }) %>
+    </div>
+    <form action="/room" method="POST">
+      <input name="room" type="text" required autocomplete="off">
+      <button type="submit">New Room</button>
+    </form>
+  </section>
+
+  <section class="footer">
+    <!-- Site footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <h6>Quick Links</h6>
+                <ul class="footer-links">
+                    <li><a href="./about">About</a></li>
+                </ul>
+            </div>
+            <hr>
+        </div>
+    </footer>
+  </section>
 </body>
 </html>
