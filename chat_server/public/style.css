@@ -1,28 +1,176 @@
 header{
-    align-items: center;
-    font-size: 40px;
-    flex-wrap: row;
-}
-body {
-  padding: 10;
-  margin: 0;
-  justify-content: center;
+  background-color: #EDFFFF;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  min-height: 100vh;
+  background-color: #EDFFFF;
+  color: #000000;
+}
+
+a{
+  text-decoration: none;
+  color: #737373;
+}
+a:hover{
+  color: #FFE4D4;
+}
+
+h1{
+  font-size: 200%;
+  font-weight: 500;
+}
+
+img {
+  width: 20rem;
+  text-align: centers;
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+}
+
+input[type='submit'],
+label {
+  margin-top: 1rem;
+}
+
+.center {
+  padding: 10px;
+}
+.buffer{
+  padding-top: 5%;
+  width: 100%;
+  min-height: 65vh;
+}
+
+
+/*   Home page and rooms style   */
+
+.navSection{
+  width: 100%;
+  height: 2.5rem;
+  padding-bottom: 2.5rem;
+  top: 0;
+}
+.navSection
+{
+  background-color:#82B3B3;
+  font-size:15px;
+  line-height:50px;
+  color:#737373;
+  padding-inline-start: 0%;
+}
+.navSection a
+{
+  color:#737373;
+}
+.navSection a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.nav-links
+{
+  display: flex;
+  align-items: center;
+  padding-inline: 3px;
+}
+.nav-links li
+{
+  display:block
+}
+
+.nav-links a
+{
+  color:#ffffff
+}
+
+.nav-links img {
+  max-width: 4rem;
+}
+
+.nav-links a:active,.nav-links a:focus,.nav-links a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+
+.nav-links.inline li
+{
+  display:inline-block
+}
+
+.mainSection{
+  text-align: center;
+}
+
+.joinSection{
+  margin-top: 1rem;
+  margin-inline: 40%;
+}
+
+.buffer{
+background: linear-gradient(180deg, #EDFFFF, #5C9191);
+}
+
+
+/* login modal*/
+
+.hide{
+  display: none;
+}
+
+.modal{
+  display: inline-grid;
+  border-radius: 15px;
+  padding: 20px;
+  background-color: #A2DEDE;
+  text-align: center;
+}
+
+#log-in-modal{
+  padding: 10px;
+}
+#cancel-log-in-button {
+  max-width: fit-content;
+  height: fit-content;
+  border-radius: 15%;
+}
+
+#cancel-log-in-button:hover {
+background-color: #FFE4D4;
+}
+
+.cancel-button-img{
+  max-width: 20px;
+}
+
+/* rooms css */
+
 #message-container {
+  min-height: 10rem;
+  max-width: fit-content;
   border-width: 5px;
+  border-radius: 1% ;
   border-color: #26272b;
   width: 80%;
   max-width: 1000px;
+  background-color: white;
 }
 
 #message-container div {
-  background-color: rgb(255, 111, 0);
+  background-color: #FFE4D4;
+  color: #737373;
   padding: 5px;
 }
 
 #message-container div:nth-child(2n) {
-  background-color: rgb(0, 0, 0);
+  background-color: #B38970;
   color: white;
 }
 
@@ -35,12 +183,18 @@ body {
   background-color: white;
   max-width: 1000px;
   width: 80%;
-  justify-content: ;
+}
+
+#room-container{
+  padding-top: 5%;
 }
 
 #message-input {
   flex-grow: 1;
 }
+
+
+/* scrollable chat box */
 
 table {
     border-collapse: collapse;
@@ -48,9 +202,6 @@ table {
     width: 100%;
     border: 0px solid #ddd;
 }
-
-/* scrollable chat box */
-
 th,
 td {
     text-align: left;
@@ -75,27 +226,30 @@ td {
 .scroll {
     display: block;
     border: 0px solid red;
-    padding: 5px;
+    padding: 0px;
     margin-top: 5px;
     width: 100%;
     height: 755px;
     overflow-y: scroll;
 }
 
- /* footer */
+
+/* footer */
 
 .footer{
-    padding-bottom: 40%;
-    padding: 0%;
-    height: 20hv;
+  width: 100%;
+  height: 2.5rem;
+  padding-bottom: 2.5rem;
+  position: absolute;
+  bottom: 0;
 }
 .site-footer
 {
-  background-color:#26272b;
+  background-color:#82B3B3;
   padding:45px 30px 20px;
   font-size:15px;
   line-height:30px;
-  color:#737373;
+  color: #737373;
 }
 .site-footer hr
 {
@@ -108,19 +262,14 @@ td {
 }
 .site-footer h6
 {
-  color:#fff;
   font-size:16px;
   text-transform:uppercase;
   margin-top:5px;
   letter-spacing:2px
 }
-.site-footer a
-{
-  color:#737373;
-}
 .site-footer a:hover
 {
-  color:#3366cc;
+  color: #FFE4D4;
   text-decoration:none;
 }
 .footer-links
@@ -132,20 +281,12 @@ td {
 {
   display:block
 }
-.footer-links a
-{
-  color:#737373
-}
+
 .footer-links a:active,.footer-links a:focus,.footer-links a:hover
 {
-  color:#3366cc;
   text-decoration:none;
 }
 .footer-links.inline li
 {
   display:inline-block
-}
-.site-footer .social-icons
-{
-  text-align:right
 }

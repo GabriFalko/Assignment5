@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chat App Home page</title>
+  <link rel="icon" type="image/x-icon" href="/png/logo-no-background.png" alt="page logo">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script defer src="script.js"></script>
+</head>
+
+<body>
+  <header>
+
+  </header>
+
+  <section class="mainSection">
+    <!--Title-->
+    <h1 id="title">Home page</h1>
+
+    <!--log in prompt-->
+    <div class="log-in-prompt">
+      <button class="log-in-button" id="log-in-button">Log in</button>
+  
+      <button class="log-in-button" id="register-button">Register</button>
+    </div>
+
+    <!--Log in modal-->
+    <div class="hide" id="log-in-modal">
+      <div class="modal">
+        <button id="cancel-log-in-button">
+          <img class="cancel-button-img" src="/png/icon3-144.png" alt="cancel button">
+        </button>
+        <label for="name-input">Username:</label>
+        <input type="text" id="name-input" autocomplete="off" >
+        <label for="key-input">Password (8 characters minimum):</label>
+        <input type="password" id="key-input" autocomplete="off" minlength="8" required>
+        <input id="submit-button" type="submit" value="Sign in">
+      </div>
+    </div>
+
+    <!--Error modal-->
+    <div class="hide" id="log-in-error-modal">
+      <button class="cancel-button" id="cancel-error-button">
+        <img  class="cancel-button" src="/png/icon3-144.png" alt="cancel button">
+      </button>
+      <img src="/png/icon4-144.png" alt="error image">
+      <h1> Error: user not found! </h1>
+    </div>
+  </section>
+
+  <section class="joinSection">
+    <a id="section-link"></a>
+
+      <h6>Click Join on the rooms below       
+        (if none are listed below create one)</h6>
+
+    <form action="/room" method="POST">
+      <input name="room" type="text" required autocomplete="off">
+      <button type="submit">Create Room</button>
+    </form>
+    <!--Joining rooms from home page (might remove feature)--> 
+
+    <div id="room-container">
+      <% Object.keys(rooms).forEach(room => { %>
+        <div><%= room %></div>
+        <a href="/<%= room %>">Join</a>
+      <% }) %>
+    </div>
+  </section>
+  </a>
+
+  <section class="buffer">
+        
+  </section>
+
+  <section class="footer">
+    <!-- Site footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <h6>Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="#section-link">Rooms</a></li>
+            <li><a href="./blog">Blog</a></li>
+            <li><a href="./about">About</a></li>
+          </ul>
+        </div>
+        <hr>
+      </div>
+    </footer>
+  </section>
+</body>
+</html>

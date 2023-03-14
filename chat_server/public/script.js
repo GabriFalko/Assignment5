@@ -1,7 +1,6 @@
 /*
- * Client-side javascript
+ * Client-side javascript for rooms page
  */
-
 
 const socket = io('http://localhost:3000')
 const messageContainer = document.getElementById('message-container')
@@ -53,25 +52,60 @@ function appendMessage(message) {
   messageContainer.append(messageElement)
 }
 
-/* to implement future UI color change for user.
-let selectElement = document.getElementById('colorDropdown'),
-options = ["BlueViolet", "Crimson", "DarkSalmon", "OliveDrab", "SaddleBrown"];
 
-for (let i = 0 ; i < options.length - 1; i++) {
-  let opt = options[i];
-  let optionList = document.createElement("option");
-  optionList.textContent = opt;
-  optionList.value = opt;
-  selectElement.appendChild(optionList)
+/*
+ * Client-side javascript for log-in page
+ */
+
+const logInModal = document.getElementById('log-in-modal')
+const logInErrorModal = document.getElementById('log-in-error-modal')
+const logInButton = document.getElementById('log-in-button')
+const registerButton = document.getElementById('register-button')
+const cancelButton = document.getElementById('cancel-log-in-button')
+const cancelErrorButton = document.getElementById('cancel-error-button')
+const submitButton = document.getElementById('submit-button')
+
+var nameInput = document.getElementById('name-input')
+var keyInput = document.getElementById('key-input')
+
+
+function toggleLogInModal()
+{
+  logInModal.classList.toggle("hide");
+  nameInput.value=""
+  keyInput.value=""
 }
 
-document.getElementById('colorDropdown').onchange = function() {
-  let c = document.getElementById("myCanvas");
-  let ctx = c.getContext("2d");
-  ctx.beginPath();
-  ctx.rect(20, 20, 150, 100);
-  ctx.fillStyle = document.getElementById('colorDropdown').value;
+function toggleErrorModal()
+{
+  logInErrorModal.classList.toggle("hide");
+}
 
-  ctx.fill();
-};
-*/
+logInButton.addEventListener('click', function() {
+  toggleLogInModal()
+})
+
+registerButton.addEventListener('click', function() {
+  toggleLogInModal()
+})
+
+cancelButton.addEventListener('click', function() {
+  toggleLogInModal()
+})
+
+cancelErrorButton.addEventListener('click', function() {
+  toggleErrorModal()
+})
+
+nameInput.addEventListener('submit', () => {
+  toggleErrorModal()
+})
+
+submitButton.addEventListener('submit', (nameInput, keyInput) => {
+  socket.emit('user-logging-in', nameInput, keyInput)
+  toggleLogInModal()
+  
+  socket.on('log-in-unsuccesful', () => {
+    toggleErrorModal()
+  })
+})

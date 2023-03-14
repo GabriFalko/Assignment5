@@ -4,57 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>About Chat App</title>
-  <link rel="icon" type="image/x-icon" href="/logo.png" alt="page logo">
-  <link rel="stylesheet" href="/style.css">
+
+  <title>Chat App</title>
+  <link rel="icon" type="image/x-icon" href="/png/logo-no-background.png" alt="page logo">
+  <link rel="stylesheet" href="style.css">
   <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
   <script defer src="script.js"></script>
 </head>
 
 <body>
-  <section class="section1">
-    <!--heading-->
-    <header>
-       <a href="/", id="img_home_link"><img src="/logo-no-background.png", alt="quaestus home"></a>
-    </header>
-  </section>
+  <header>
+    
+  </header>
 
-  <section class="buffer1">
-    <!--Title-->
-    <div class="about">
-        <h1>About this website</h1>
-        <p class="about-text">
-            About the app usage
+  <section class="mainSection">
+    <!--first page info-->
+      <div class="center">
+        <!--page image-->
+        <div id="logo">
+          <img class="logo" src="/png/logo-no-background.png" alt="page image">
+          <h1>Welcome to Chat App</h1>
+        </div>   
+         <p class="about-text">
+        How to use this chat service
         </p>
-    </div>
-  </section>
-
-  <section class="main">
-    <!--Joining rooms from home page (might remove feature)--> 
-    <div id="room-container">
-      <% Object.keys(rooms).forEach(room => { %>
-        <div><%= room %></div>
-        <a href="/<%= room %>">Join</a>
-      <% }) %>
-    </div>
-    <form action="/room" method="POST">
-      <input name="room" type="text" required autocomplete="off">
-      <button type="submit">New Room</button>
-    </form>
+        <!--Title-->
+        <a href="/home"><h2 id="title">Login</h2></a>
+      </div>
+    </section>
+    
+  <section class="buffer">
+        
   </section>
 
   <section class="footer">
     <!-- Site footer -->
     <footer class="site-footer">
-        <div class="container">
-            <div class="row">
-                <h6>Quick Links</h6>
-                <ul class="footer-links">
-                    <li><a href="./about">About</a></li>
-                </ul>
-            </div>
-            <hr>
-        </div>
+      <div class="container">
+
+        <hr>
+      </div>
     </footer>
   </section>
 </body>
