@@ -2,6 +2,7 @@
  * Server-side javascript most is knowladge from previous webdev class, and lots of youtube videos.
  */
 
+const { name } = require('ejs');
 const express = require('express');
 const { url } = require('inspector');
 const { urlToHttpOptions } = require('url')
@@ -15,23 +16,37 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 
-//username management
-var usersArray = [
+
+//  username management defaults
+const userArray = [
   {
-      name : "Garbiele",
-      password : 5555
+      username : "Garbiele",
+      password : '5555'
   },
   {
-      name :"Jackie",
-      password : 0000
+      username :"Jackie",
+      password : '0000'
   }
 ]
 
+
+// array of all rooms and generated encrypted id's
 const rooms = { }
 
+const fs = require('fs')
+let fInput = ""
+fs.readFile('/Users/gabrielefalchini/Desktop/OSU/CS361/Microservice/MicroserviceCS361/key.txt', fInput, (err) => {
+   if (err) throw err;
+   else{
+      console.log("The data is downloaded from the given key.txt file", fInput)
+   }
+})
+
+
+// http redirect pages
 
 app.get('/', (req, res) => {
-  res.render('./index', { usersArray })
+  res.render('./index')
 })
 
 app.get('/home', (req, res) => {
@@ -46,8 +61,15 @@ app.get('/about', function(req, res){
   res.render('./about')
 })
 
-// new room
+
+// new room creation with generated room id
 app.post('/room', (req, res) => {
+  fs.readFile('/Users/gabrielefalchini/Desktop/OSU/CS361/Microservice/MicroserviceCS361/key.txt', fInput, (err) => {
+    if (err) throw err;
+    else{
+       console.log("The data is downloaded from the given key.txt file")
+    }
+ })
   if (rooms[req.body.room] != null) {
     return res.redirect('/room')
   }
@@ -74,6 +96,8 @@ server.listen(port, function () {
   console.log("== Server is listening on port", port)
 })
 
+
+// all socket.io connection and redirections
 io.on('connection', socket => {
   socket.on('new-user', (room, name) => {
     socket.join(room)
@@ -95,17 +119,10 @@ io.on('connection', socket => {
       delete rooms[room].users[socket.id]
     })
   })
-
-  socket.on('user-logging-in', (name, password) => {
-    if (!usersArray.every(user => user.name !== name)) {
-      if(usersArray.find(name).password !== password){
-        socket.redirect('/home')
-        console.log('succesful log in of: ', name);
-      }
-    }
-  })
 })
 
+
+// function to find users in a given room
 function getUserRooms(socket) {
   return Object.entries(rooms).reduce((names, [name, room]) => {
     if (room.users[socket.id] != null) names.push(name)

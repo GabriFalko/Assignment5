@@ -16,35 +16,81 @@
   <header>
     
   </header>
-
   <section class="mainSection">
     <!--first page info-->
       <div class="center">
         <!--page image-->
         <div id="logo">
           <img class="logo" src="/png/logo-no-background.png" alt="page image">
+          <!--Title-->
           <h1>Welcome to Chat App</h1>
         </div>   
-         <p class="about-text">
-        How to use this chat service
+        <p class="about-text">
+        This website serves as a hub for communicating with the people you care about most. <br>
+        The story that led to creation of this service can be found in the About page linked below. <br>
+        For updates on new features added since the last update look for Blog page linked below. <br>
+        You can learn more about adding users on your own server and how to host it online, <br>
+        after reviewing the README file in this projects folder, following this github link: <br> 
+        <a href="https://github.com/GabriFalko/Assignment5">Chat_server</a>
+        <br><br>
+        Get started by clicking the button below
         </p>
-        <!--Title-->
-        <a href="/home"><h2 id="title">Login</h2></a>
       </div>
-    </section>
+
+    <!--log in prompt-->
+    <div class="log-in-prompt">
+      <button class="log-in-button" id="log-in-button"><h2 id="title">Login</h2></button>
+    </div>
+  </section>
     
   <section class="buffer">
-        
+    <form action="none" method="none">
+    <!--Log in modal-->
+    <div class="hide" id="log-in-modal">
+      <div class="modal"  id="animate">
+        <button id="cancel-log-in-button">
+          <img class="cancel-button-img" src="/png/icon3-144.png" alt="cancel button">
+        </button>
+        <label for="name-input">Username:</label>
+        <input type="text" id="name-input" autocomplete="off" >
+        <label for="key">Password (4 characters minimum):</label>
+        <input name="key" type="password" id="key-input" autocomplete="off" minlength="4" required>
+        <input id="submit-button" type="submit" value="Sign in">
+        <label>
+          <input type="checkbox" id="remember"> Remember me
+        </label>
+      </div>
+    </div>
+  </form>
+    
+    <!--Error modal-->
+    <div class="hide" id="log-in-error-modal">
+      <div class="modal"></div>
+        <button id="cancel-error-button">
+          <img  class="cancel-button-img" src="/png/icon3-144.png" alt="cancel button">
+        </button>
+        <img src="/png/icon4-144.png" alt="error image">
+        <h1> Error: user not found! </h1>
+        <button class="log-in-button" id="register-button">Register</button>
+      </div>
+    </div>
   </section>
+
 
   <section class="footer">
     <!-- Site footer -->
     <footer class="site-footer">
-      <div class="container">
-
-        <hr>
-      </div>
+        <div class="container">
+            <div class="row">
+                <h6>Quick Links</h6>
+                <ul class="footer-links">
+                    <li><a href="./about">About</a></li>
+                    <li><a href="./blog">Blog</a></li>
+                </ul>
+            </div>
+            <hr>
+        </div>
     </footer>
-  </section>
+</section>
 </body>
 </html>

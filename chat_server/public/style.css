@@ -10,7 +10,9 @@ body {
   background-color: #EDFFFF;
   color: #000000;
 }
-
+.about-text{
+  font-size: 16px;
+}
 a{
   text-decoration: none;
   color: #737373;
@@ -18,12 +20,29 @@ a{
 a:hover{
   color: #FFE4D4;
 }
-
+#title{
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
 h1{
   font-size: 200%;
   font-weight: 500;
 }
-
+h6{
+  text-align: center;
+}
+p{
+  padding: 30rem;
+  padding-top: 1rem;
+  font-size: 20px;
+  padding-bottom: 1rem;
+}
+ul{
+  
+  padding-left: 35rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  text-align: left;
+}
 img {
   width: 20rem;
   text-align: centers;
@@ -45,73 +64,19 @@ label {
 .buffer{
   padding-top: 5%;
   width: 100%;
-  min-height: 65vh;
+  min-height: 75vh;
+  text-align: center;
 }
-
 
 /*   Home page and rooms style   */
-
-.navSection{
-  width: 100%;
-  height: 2.5rem;
-  padding-bottom: 2.5rem;
-  top: 0;
-}
-.navSection
-{
-  background-color:#82B3B3;
-  font-size:15px;
-  line-height:50px;
-  color:#737373;
-  padding-inline-start: 0%;
-}
-.navSection a
-{
-  color:#737373;
-}
-.navSection a:hover
-{
-  color:#3366cc;
-  text-decoration:none;
-}
-.nav-links
-{
-  display: flex;
-  align-items: center;
-  padding-inline: 3px;
-}
-.nav-links li
-{
-  display:block
-}
-
-.nav-links a
-{
-  color:#ffffff
-}
-
-.nav-links img {
-  max-width: 4rem;
-}
-
-.nav-links a:active,.nav-links a:focus,.nav-links a:hover
-{
-  color:#3366cc;
-  text-decoration:none;
-}
-
-.nav-links.inline li
-{
-  display:inline-block
-}
 
 .mainSection{
   text-align: center;
 }
 
 .joinSection{
-  margin-top: 1rem;
-  margin-inline: 40%;
+  margin-top: 2rem;
+  text-align: center;
 }
 
 .buffer{
@@ -136,14 +101,38 @@ background: linear-gradient(180deg, #EDFFFF, #5C9191);
 #log-in-modal{
   padding: 10px;
 }
+
+/* The "Forgot password" text */
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Add Zoom Animation */
+#animate {
+  -webkit-animation: animatezoom 0.3s;
+  animation: animatezoom 0.3s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
 #cancel-log-in-button {
   max-width: fit-content;
   height: fit-content;
   border-radius: 15%;
 }
 
-#cancel-log-in-button:hover {
+button:hover {
 background-color: #FFE4D4;
+border-radius: 15%;
 }
 
 .cancel-button-img{
@@ -161,28 +150,26 @@ background-color: #FFE4D4;
   width: 80%;
   max-width: 1000px;
   background-color: white;
+  padding-left: 0rem;
+  margin-left: 5rem;
 }
 
 #message-container div {
   background-color: #FFE4D4;
-  color: #737373;
+  color: #000000;
   padding: 5px;
 }
 
 #message-container div:nth-child(2n) {
   background-color: #B38970;
-  color: white;
+  color: #fff;
 }
 
-#send-container {
-  border-width: 5px;
-  border-color: #26272b;
-  position: fixed;
-  padding-bottom: 30px;
-  bottom: 0;
-  background-color: white;
-  max-width: 1000px;
-  width: 80%;
+.messageSection #send-container{
+  padding-top: 10px;
+  padding-left: 48rem;
+  position:relative;
+  min-width: 400px;
 }
 
 #room-container{
@@ -245,7 +232,7 @@ td {
 }
 .site-footer
 {
-  background-color:#82B3B3;
+  background-color:#81B5B6;
   padding:45px 30px 20px;
   font-size:15px;
   line-height:30px;
@@ -262,9 +249,11 @@ td {
 }
 .site-footer h6
 {
+  text-align: left;
   font-size:16px;
   text-transform:uppercase;
   margin-top:5px;
+  margin-bottom: 5px;
   letter-spacing:2px
 }
 .site-footer a:hover

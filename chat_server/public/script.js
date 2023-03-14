@@ -1,18 +1,21 @@
 /*
  * Client-side javascript for rooms page
  */
-
+// constant definition of DOM elemnts in ejs files
 const socket = io('http://localhost:3000')
 const messageContainer = document.getElementById('message-container')
 const roomContainer = document.getElementById('room-container')
 const messageForm = document.getElementById('send-container')
 const messageInput = document.getElementById('message-input')
 
-if (messageForm != null) {
-  const name = prompt('What is your name?')
-  appendMessage('You joined')
-  socket.emit('new-user', roomName, name)
+var userName = ''
+var userPassword = ''
 
+if (messageForm != null) {
+  const name = userName
+  appendMessage('You joined')
+  socket.emit('join-room', roomName, name)
+  socket.emit('new-user', roomName, name)
   messageForm.addEventListener('submit', e => {
     e.preventDefault()
     const message = messageInput.value
@@ -21,7 +24,15 @@ if (messageForm != null) {
     messageInput.value = ''
   })
 }
-// make it look prettier***
+
+// socket.io requests and responses: 
+socket.on('user-found', name =>{
+  socket.emit('new-user', room, name)
+})
+socket.on('user-not-found', name => {
+  toggleErrorModal()
+  console.log(name+" wasn't found in database.")
+})
 socket.on('room-created', room => {
   const roomElement = document.createElement('div')
   roomElement.innerText = room
@@ -31,21 +42,17 @@ socket.on('room-created', room => {
   roomContainer.append(roomElement)
   roomContainer.append(roomLink)
 })
-
-// make it look prettier***
 socket.on('chat-message', data => {
   appendMessage(`${data.name}: ${data.message}`)
 })
-
 socket.on('user-connected', name => {
   appendMessage(`${name} connected`)
 })
-
 socket.on('user-disconnected', name => {
   appendMessage(`${name} disconnected`)
 })
 
-// make it look prettier***
+// function to send message container to client DOM
 function appendMessage(message) {
   const messageElement = document.createElement('div')
   messageElement.innerText = message
@@ -57,29 +64,51 @@ function appendMessage(message) {
  * Client-side javascript for log-in page
  */
 
+// constant definition of DOM elemnts in ejs files
 const logInModal = document.getElementById('log-in-modal')
 const logInErrorModal = document.getElementById('log-in-error-modal')
+// buttons
 const logInButton = document.getElementById('log-in-button')
 const registerButton = document.getElementById('register-button')
 const cancelButton = document.getElementById('cancel-log-in-button')
 const cancelErrorButton = document.getElementById('cancel-error-button')
 const submitButton = document.getElementById('submit-button')
+var rememberMe = document.getElementById('remember')
 
-var nameInput = document.getElementById('name-input')
-var keyInput = document.getElementById('key-input')
+let nameInput = document.getElementById('name-input')
+let keyInput = document.getElementById('key-input')
+
+// this variable ensures checked box is ticked or not
+var checked = 1
 
 
+// functions to toggle modal for login and errors
 function toggleLogInModal()
 {
   logInModal.classList.toggle("hide");
-  nameInput.value=""
-  keyInput.value=""
+  if(checked%2 == 0) {
+  } else {  
+  nameInput.value = ""
+  keyInput.value = "" 
+  }
 }
-
 function toggleErrorModal()
 {
   logInErrorModal.classList.toggle("hide");
 }
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == logInModal) {
+    toggleLogInModal()
+  }
+}
+
+//  event listeners for each button
+rememberMe.addEventListener('click', function() {
+  rememberMe.classList.toggle("checked")
+  checked += 1
+})
 
 logInButton.addEventListener('click', function() {
   toggleLogInModal()
@@ -97,15 +126,10 @@ cancelErrorButton.addEventListener('click', function() {
   toggleErrorModal()
 })
 
-nameInput.addEventListener('submit', () => {
-  toggleErrorModal()
+submitButton.addEventListener('submit', () => {
+  userName = nameInput.value
+  userPassword = keyInput.value
+  toggleLogInModal()
+  socket.emit('user-logging-in', userName, userPassword)
 })
 
-submitButton.addEventListener('submit', (nameInput, keyInput) => {
-  socket.emit('user-logging-in', nameInput, keyInput)
-  toggleLogInModal()
-  
-  socket.on('log-in-unsuccesful', () => {
-    toggleErrorModal()
-  })
-})
